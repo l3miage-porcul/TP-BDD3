@@ -29,4 +29,8 @@ public class ArtistComponent {
 
         return null;
     }
+
+    public int getCountGenreMusical(String genre){
+        return artistRepository.findArtistEntitiesByGenreMusical(genre).size();
+    }
 }
