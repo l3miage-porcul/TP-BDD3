@@ -1,6 +1,7 @@
 package fr.uga.l3miage.tp3.exo1.Components;
 
 import fr.uga.l3miage.tp3.exo1.Repository.ArtistRepository;
+import fr.uga.l3miage.tp3.exo1.enums.GenreMusical;
 import fr.uga.l3miage.tp3.exo1.models.ArtistEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -16,21 +17,18 @@ public class ArtistComponent {
         return artistRepository.findById(name).orElseThrow();
     }
 
-    public ArtistEntity createArtist(String name, String biography){
-        ArtistEntity artistEntity = ArtistEntity
-                .builder()
-                .name(name)
-                .biography(biography)
-                .build();
+    public ArtistEntity createArtist(ArtistEntity artistEntity){
         return artistRepository.save(artistEntity);
     }
 
-    public ArtistEntity updateArtist(){
+    public ArtistEntity updateBiography(String name, String biography){
 
-        return null;
+        ArtistEntity artistEntity = artistRepository.findById(name).orElseThrow();
+        artistEntity.setBiography(biography);
+        return artistRepository.save(artistEntity);
     }
 
-    public int getCountGenreMusical(String genre){
-        return artistRepository.findArtistEntitiesByGenreMusical(genre).size();
+    public int getCountGenreMusical(GenreMusical genre){
+        return artistRepository.findAllByGenreMusical(genre).size();
     }
 }

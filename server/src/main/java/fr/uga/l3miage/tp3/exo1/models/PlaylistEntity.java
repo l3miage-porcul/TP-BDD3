@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.time.Duration;
 import java.util.Set;
@@ -23,5 +24,6 @@ public class PlaylistEntity {
     private Duration totalDuration;
 
     @OneToMany
+    @JoinColumn(name = "name")
     private Set<SongEntity> songEntities;
 }
